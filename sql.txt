@@ -1,0 +1,24 @@
+CREATE TABLE Customers (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Books (
+    book_id SERIAL PRIMARY KEY,
+    title VARCHAR(100),
+    author VARCHAR(100),
+    price DECIMAL
+);
+
+CREATE TABLE Orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES Customers(customer_id),
+    order_date DATE
+);
+
+CREATE TABLE OrderDetails (
+    order_id INTEGER REFERENCES Orders(order_id),
+    book_id INTEGER REFERENCES Books(book_id),
+    quantity INTEGER
+);
